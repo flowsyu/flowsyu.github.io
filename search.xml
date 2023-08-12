@@ -24,73 +24,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Two Sum</title>
-    <url>/2023/06/10/Two-Sum/</url>
-    <content><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><blockquote>
-<p><a href="https://leetcode.cn/problems/two-sum/description/">https://leetcode.cn/problems/two-sum/description/</a></p>
-<p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.<br>You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
-</blockquote>
-<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><blockquote>
-<p>Given nums &#x3D; [2, 7, 11, 15], target &#x3D; 9,<br>Because nums[0] + nums[1] &#x3D; 2 + 7 &#x3D; 9,<br>return [0, 1]</p>
-</blockquote>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>在数组中找到 2 个数之和等于给定值的数字，结果返回 2 个数字在数组中的下标。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>这道题最优的做法时间复杂度是 O(n)。<br>顺序扫描数组，对每一个元素，在 map 中找能组合给定值的另一半数字，如果找到了，直接返回 2 个数字的下标即可。如果找不到，就把这个数字存入 map 中，等待扫到“另一半”数字的时候，再取出来返回结果。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">twoSum</span><span class="params">(nums []<span class="type">int</span>, target <span class="type">int</span>)</span></span> []<span class="type">int</span> &#123;</span><br><span class="line">    m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">int</span>]<span class="type">int</span>)</span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(nums); i++ &#123;</span><br><span class="line">        another := target - nums[i]</span><br><span class="line">        <span class="keyword">if</span> _, ok := m[another]; ok &#123;</span><br><span class="line">            <span class="keyword">return</span> []<span class="type">int</span>&#123;m[another], i&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        m[nums[i]] = i</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>力扣</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>android源码下载和编译</title>
-    <url>/2023/08/12/android%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%92%8C%E7%BC%96%E8%AF%91/</url>
-    <content><![CDATA[<h2 id="Ubuntu编译Android"><a href="#Ubuntu编译Android" class="headerlink" title="Ubuntu编译Android"></a>Ubuntu编译Android</h2><h4 id="Ubuntu版本：22-04"><a href="#Ubuntu版本：22-04" class="headerlink" title="Ubuntu版本：22.04"></a>Ubuntu版本：22.04</h4><h4 id="Android版本：11"><a href="#Android版本：11" class="headerlink" title="Android版本：11"></a>Android版本：11</h4><h5 id="安装repo"><a href="#安装repo" class="headerlink" title="安装repo"></a>安装repo</h5><ol>
-<li><p>确保主目录下有一个 bin&#x2F; 目录，并且该目录包含在路径中：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> ~/bin</span><br><span class="line">PATH=~/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>下载 Repo 工具，并确保它可执行：</p>
-<p>官方源：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl https://storage.googleapis.com/git-repo-downloads/repo &gt; ~/bin/repo</span><br><span class="line"><span class="built_in">chmod</span> a+x ~/bin/repo</span><br></pre></td></tr></table></figure>
-
-<p>清华源：</p>
-<p>下载</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl https://mirrors.tuna.tsinghua.edu.cn/git/git-repo -o ~/bin/repo</span><br><span class="line"><span class="built_in">chmod</span> +x repo</span><br></pre></td></tr></table></figure>
-
-<p>更新</p>
-<p>repo运行过程中会尝试访问官方源更新自己，如果要使用清华的镜像源更新，复制以下内容到~&#x2F;.bashrc</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> REPO_URL=<span class="string">&#x27;https://mirrors.tuna.tsinghua.edu.cn/git/git-repo&#x27;</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h5 id="下载源码"><a href="#下载源码" class="headerlink" title="下载源码"></a>下载源码</h5><ol>
-<li><p>配置git</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;Your Email&quot;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用清华源初始化</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">repo init -u https://aosp.tuna.tsinghua.edu.cn/platform/manifest -b android-11.0.0_r48</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>同步代码</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">repo <span class="built_in">sync</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h5 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h5><ol>
-<li><p>依赖安装</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install libssl-dev libffi-dev gnupg flex bison gperf zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 lib32ncurses-dev x11proto-core-dev libx11-dev zlib1g-dev ccache libgl1-mesa-dev libxml2-utils xsltproc unzip</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编译</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> build/envsetup.sh</span><br><span class="line">lunch &#123;指定target&#125;</span><br><span class="line">mm</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>repo</tag>
-        <tag>aosp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Typora+PicGo+Hexo+Github搭建个人博客流水线</title>
     <url>/2023/06/09/Typora-PicGo-Hexo-Github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B5%81%E6%B0%B4%E7%BA%BF/</url>
     <content><![CDATA[<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ul>
@@ -141,6 +74,73 @@
       </categories>
       <tags>
         <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>android源码下载和编译</title>
+    <url>/2023/08/12/android%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%92%8C%E7%BC%96%E8%AF%91/</url>
+    <content><![CDATA[<h2 id="Ubuntu编译Android"><a href="#Ubuntu编译Android" class="headerlink" title="Ubuntu编译Android"></a>Ubuntu编译Android</h2><h4 id="Ubuntu版本：22-04"><a href="#Ubuntu版本：22-04" class="headerlink" title="Ubuntu版本：22.04"></a>Ubuntu版本：22.04</h4><h4 id="Android版本：11"><a href="#Android版本：11" class="headerlink" title="Android版本：11"></a>Android版本：11</h4><h5 id="安装repo"><a href="#安装repo" class="headerlink" title="安装repo"></a>安装repo</h5><ol>
+<li><p>确保主目录下有一个 bin&#x2F; 目录，并且该目录包含在路径中：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> ~/bin</span><br><span class="line">PATH=~/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载 Repo 工具，并确保它可执行：</p>
+<p>官方源：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl https://storage.googleapis.com/git-repo-downloads/repo &gt; ~/bin/repo</span><br><span class="line"><span class="built_in">chmod</span> a+x ~/bin/repo</span><br></pre></td></tr></table></figure>
+
+<p>清华源：</p>
+<p>下载</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl https://mirrors.tuna.tsinghua.edu.cn/git/git-repo -o ~/bin/repo</span><br><span class="line"><span class="built_in">chmod</span> +x repo</span><br></pre></td></tr></table></figure>
+
+<p>更新</p>
+<p>repo运行过程中会尝试访问官方源更新自己，如果要使用清华的镜像源更新，复制以下内容到~&#x2F;.bashrc</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> REPO_URL=<span class="string">&#x27;https://mirrors.tuna.tsinghua.edu.cn/git/git-repo&#x27;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h5 id="下载源码"><a href="#下载源码" class="headerlink" title="下载源码"></a>下载源码</h5><ol>
+<li><p>配置git</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;Your Email&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用清华源初始化</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">repo init -u https://aosp.tuna.tsinghua.edu.cn/platform/manifest -b android-11.0.0_r48</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>同步代码</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">repo <span class="built_in">sync</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h5 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h5><ol>
+<li><p>依赖安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install libssl-dev libffi-dev gnupg flex bison gperf zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 lib32ncurses-dev x11proto-core-dev libx11-dev zlib1g-dev ccache libgl1-mesa-dev libxml2-utils xsltproc unzip</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编译</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> build/envsetup.sh</span><br><span class="line">lunch &#123;指定target&#125;</span><br><span class="line">mm</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>repo</tag>
+        <tag>aosp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Two Sum</title>
+    <url>/2023/06/10/Two-Sum/</url>
+    <content><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p><a href="https://leetcode.cn/problems/two-sum/description/">https://leetcode.cn/problems/two-sum/description/</a></p>
+<p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.<br>You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
+</blockquote>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><blockquote>
+<p>Given nums &#x3D; [2, 7, 11, 15], target &#x3D; 9,<br>Because nums[0] + nums[1] &#x3D; 2 + 7 &#x3D; 9,<br>return [0, 1]</p>
+</blockquote>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>在数组中找到 2 个数之和等于给定值的数字，结果返回 2 个数字在数组中的下标。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>这道题最优的做法时间复杂度是 O(n)。<br>顺序扫描数组，对每一个元素，在 map 中找能组合给定值的另一半数字，如果找到了，直接返回 2 个数字的下标即可。如果找不到，就把这个数字存入 map 中，等待扫到“另一半”数字的时候，再取出来返回结果。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">twoSum</span><span class="params">(nums []<span class="type">int</span>, target <span class="type">int</span>)</span></span> []<span class="type">int</span> &#123;</span><br><span class="line">    m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">int</span>]<span class="type">int</span>)</span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(nums); i++ &#123;</span><br><span class="line">        another := target - nums[i]</span><br><span class="line">        <span class="keyword">if</span> _, ok := m[another]; ok &#123;</span><br><span class="line">            <span class="keyword">return</span> []<span class="type">int</span>&#123;m[another], i&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        m[nums[i]] = i</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>力扣</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
       </tags>
   </entry>
 </search>
